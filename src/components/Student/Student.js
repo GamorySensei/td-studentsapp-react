@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function Student({ studentProps }){
+function Student({ id, studentProps, onDelete }){
 
     const [note, setNote] = useState(0);
     const [color, setColor] = useState("#fff");
@@ -23,6 +23,10 @@ function Student({ studentProps }){
         }
     }, [note])
 
+    const handleDelete = () => {
+        onDelete(id)
+    }
+
     return (<>
     <div style={ { backgroundColor: color } }>
         <strong>{ studentProps.firstname } { studentProps.lastname }</strong>
@@ -37,6 +41,7 @@ function Student({ studentProps }){
                 onChange={ e => setNote(e.target.value) } 
             />
         </div>
+        <button onClick={ handleDelete }>Supprimer</button>
     </div>
     </>)
 

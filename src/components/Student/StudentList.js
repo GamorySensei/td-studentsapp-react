@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Student from './Student';
 import StudentProps from './StudentProps';
 
@@ -9,13 +9,34 @@ let studentsList = [
 ];
 
 function StudentList() {
-    const [students, setStudents] = useState(studentsList);
-    const [filteredStudents, setFilteredStudents] = useState(studentsList);
+    const [students, setStudents] = useState([]);
+    const [filteredStudents, setFilteredStudents] = useState([]);
+
+    useEffect(() => {
+        setStudents(studentsList)
+        setFilteredStudents(studentsList)
+    }, [])
+
+    useEffect(() => {
+        setFilteredStudents(students)
+    }, [students])
 
     const handleFilterNoteChange = (value) => {
-        const filteredStudents = students.filter(student => student.note === parseInt(value));
-        setFilteredStudents(filteredStudents);
-        console.log(filteredStudents);
+        if(value !== "")
+        {
+            const filteredStudents = students.filter(student => student.note === parseInt(value));
+            setFilteredStudents(filteredStudents);
+        }
+        else
+        {
+            setFilteredStudents(students);
+        }
+    }
+
+    const handleStudentDelete = (index) => {
+        let newStudentsList = [...students];
+        newStudentsList.splice(index,1);
+        setStudents(newStudentsList);
     }
 
 	return <>
@@ -25,7 +46,14 @@ function StudentList() {
         </div>
 
 
-        { filteredStudents.map((student,index) => <Student key={ index } studentProps={ student } />)}
+        { filteredStudents.map((student,index) => 
+            <Student 
+                key={ index } 
+                id={ index } 
+                studentProps={ student }
+                onDelete = { (index) => handleStudentDelete(index) }
+            />)
+        }
     </>
 }
 
