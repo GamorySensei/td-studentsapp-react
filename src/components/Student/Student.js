@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Button from "../Bootstrap/Button";
 
 function Student({ id, studentProps, onDelete }){
 
@@ -42,7 +43,11 @@ function Student({ id, studentProps, onDelete }){
             />
         </td>
         <td>
-            <button onClick={ handleDelete } className="btn btn-outline-danger btn-sm">Supprimer</button>
+    
+            <Button type="danger" onClick={ handleDelete }>
+                <i className="bi bi-trash"></i> Supprimer
+            </Button>
+
         </td>
     </tr>
     </>)
