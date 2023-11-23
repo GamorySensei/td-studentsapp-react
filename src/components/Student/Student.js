@@ -12,14 +12,14 @@ function Student({ id, studentProps, onDelete }){
     useEffect(() => {
         if(note >= 0 && note <= 1)
         {
-            setColor("red");
+            setColor("table-danger");
         }
         else if(note >= 2 && note <= 3)
         {
-            setColor("orange");
+            setColor("table-warning");
         }
         else{
-            setColor("green");
+            setColor("table-success");
         }
     }, [note])
 
@@ -28,7 +28,7 @@ function Student({ id, studentProps, onDelete }){
     }
 
     return (<>
-    <tr style={ { backgroundColor: color } }>
+    <tr className={ color }>
         <td>{ studentProps.lastname } </td>
         <td>{ studentProps.firstname }</td>
         <td>{ studentProps.promo }</td>

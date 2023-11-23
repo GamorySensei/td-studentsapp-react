@@ -53,20 +53,25 @@ function StudentList() {
 						<thead>
 							<tr>
 								<td colSpan={5}>
-                                    <div class="input-group" style={ {width: '200px' }}>
-                                        <span class="input-group-text">Filtre note</span>
-                                        <input
-                                            type="number"
-                                            min="0"
-                                            max="5"
-                                            className="form-control"
-                                            onChange={(e) =>
-                                                handleFilterNoteChange(
-                                                    e.target.value
-                                                )
-                                            }
-                                        />
-                                    </div>
+									<div
+										className="input-group"
+										style={{ width: "200px" }}
+									>
+										<span className="input-group-text">
+											Filtre note
+										</span>
+										<input
+											type="number"
+											min="0"
+											max="5"
+											className="form-control"
+											onChange={(e) =>
+												handleFilterNoteChange(
+													e.target.value
+												)
+											}
+										/>
+									</div>
 								</td>
 							</tr>
 							<tr>
@@ -78,16 +83,24 @@ function StudentList() {
 							</tr>
 						</thead>
 						<tbody>
-							{filteredStudents.map((student, index) => (
-								<Student
-									key={index}
-									id={index}
-									studentProps={student}
-									onDelete={(index) =>
-										handleStudentDelete(index)
-									}
-								/>
-							))}
+							{filteredStudents.length > 0 ? (
+								filteredStudents.map((student, index) => (
+									<Student
+										key={index}
+										id={index}
+										studentProps={student}
+										onDelete={(index) =>
+											handleStudentDelete(index)
+										}
+									/>
+								))
+							) : (
+								<tr>
+									<td colSpan={5} className="tex-center">
+										Aucun stagiaire trouvé...
+									</td>
+								</tr>
+							)}
 						</tbody>
 					</table>
 				</div>
@@ -97,7 +110,6 @@ function StudentList() {
 					/>
 				</div>
 			</div>
-
 		</>
 	);
 }
