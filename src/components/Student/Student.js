@@ -28,11 +28,11 @@ function Student({ id, studentProps, onDelete }){
     }
 
     return (<>
-    <div style={ { backgroundColor: color } }>
-        <strong>{ studentProps.firstname } { studentProps.lastname }</strong>
-        <p>{ studentProps.promo }</p>
-        <p>{ note }</p>
-        <div>
+    <tr style={ { backgroundColor: color } }>
+        <td>{ studentProps.lastname } </td>
+        <td>{ studentProps.firstname }</td>
+        <td>{ studentProps.promo }</td>
+        <td>
             <input 
                 type="number" 
                 value={ note }
@@ -40,9 +40,11 @@ function Student({ id, studentProps, onDelete }){
                 max={5}
                 onChange={ e => setNote(e.target.value) } 
             />
-        </div>
-        <button onClick={ handleDelete }>Supprimer</button>
-    </div>
+        </td>
+        <td>
+            <button onClick={ handleDelete } className="btn btn-outline-danger btn-sm">Supprimer</button>
+        </td>
+    </tr>
     </>)
 
 }
